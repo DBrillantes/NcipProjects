@@ -1,0 +1,8 @@
+﻿@model IEnumerable<NCIP.Models.Person>
+@Html.Partial("Partials/_EmployeeTable")
+@section Scripts {
+    @Scripts.Render("~/bundles/customScripts")
+    <script>
+        new Tablesort(document.getElementById('persons-table'));
+    </script>
+}

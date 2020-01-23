@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NCIP.Models.Community>
+<table id="communities-table" class="table-responsive table-striped table-hover table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th class="col-lg-4">
+                @Html.DisplayNameFor(model => model.Sitio)
+            </th>
+            <th class="col-lg-4">
+                @Html.DisplayNameFor(model => model.Barangay.BarangayName)
+            </th>
+
+            <th class="col-sm-1">
+                @Html.DisplayNameFor(model => model.Population)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.Representative)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Sitio, "Details", new { controller = "Community", id = item.ID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Barangay.BarangayName)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Population)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Representative)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

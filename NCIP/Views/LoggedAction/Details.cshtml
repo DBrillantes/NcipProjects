@@ -1,0 +1,34 @@
+﻿@model NCIP.Models.LoggedAction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoggedAction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActionDone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

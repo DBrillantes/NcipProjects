@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NCIP.Models.Meeting>
+<table id="meetings-table" class="table-responsive table-striped table-hover table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th class="col-md-3">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="col-md-3">
+                @Html.DisplayNameFor(model => model.Project.projectTitle)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.DateHeld)
+            </th>
+            <th class="col-md-3">
+                @Html.DisplayName("Stage When Held")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", new { controller = "Meeting", id = item.ID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.projectTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateHeld)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stage.ID) -
+                    @Html.DisplayFor(modelItem => item.Stage.StageName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/customScripts")
+    <script>
+        new Tablesort(document.getElementById('meetings-table'));
+    </script>
+}

@@ -1,0 +1,40 @@
+﻿@model NCIP.Models.AffectedCommunity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="pull-right">
+        @Html.ActionLink("Back to Index", "Index", new { controller = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() }, new { @class = "btn btn-primary btn-lg" })
+    </div>
+    <h2 class="pull-left">@Html.DisplayFor(model => model.Community.Sitio)</h2>
+
+</div>
+
+<div>
+    <h4>AffectedCommunity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Community.Sitio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Community.Sitio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

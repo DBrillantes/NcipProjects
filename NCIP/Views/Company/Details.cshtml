@@ -1,0 +1,58 @@
+﻿@model NCIP.ViewModels.CompanyViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <div class="container">
+        <h2 class="pull-left">@Html.DisplayFor(model => model.Name)</h2>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Landline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Landline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Businesstype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Businesstype)
+        </dd>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+        }
+    </dl>
+</div>
+<hr />
+@Html.Partial("Partials/_EmployeeTable", Model.Persons)
+@Html.Partial("Partials/_ProjectsTable", Model.Projects)
+@{
+
+}

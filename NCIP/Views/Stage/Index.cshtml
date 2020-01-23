@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NCIP.ViewModels.StageViewModel >
+<table class="table-responsive table-hover table-bordered table-condensed" id="stages-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StageName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="col-xs-1">
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td class="col-sm-10">
+                    @Html.ActionLink(item.StageName, "Details", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

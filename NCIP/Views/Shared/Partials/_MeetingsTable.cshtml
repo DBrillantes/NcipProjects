@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NCIP.ViewModels.MeetingTableViewModel>
+<h3>Meetings</h3>
+<table class="table table-striped table-hover table-bordered table-condensed" id='meeting-table'>
+    <thead>
+        <tr>
+            <th class="col-md-4">@Html.DisplayNameFor(model => model.Name)</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => model.DateHeld)</th>
+            <th class="col-md-3">@Html.DisplayNameFor(model => model.Stage.StageName)</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", "Meeting", new { id = item.ID }, new { @class = "toplink" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateHeld)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stage.ID) -
+                @Html.DisplayFor(modelItem => item.Stage.StageName)
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,104 @@
+﻿@model NCIP.ViewModels.ProjectDetailsViewModel
+@{
+    ViewBag.Title = Model.projectTitle;
+}
+
+
+<div>
+    <div class="container">
+        <h2 class="pull-left">@Html.DisplayFor(model => model.projectTitle)</h2>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stage.StageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stage.StageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeStamp)
+        </dt>
+
+        <dd>
+            @{
+                string formattedTime = Model.timeStamp.ToString("MMM dd, yyyy");
+            }
+            @Html.DisplayFor(modelItem => formattedTime)
+
+        </dd>
+
+    </dl>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+    }
+</div>
+<hr />
+
+<div class="row">
+    @Html.Partial("Partials/_AffectedCommunitiesTable", Model.AffectedCommunities)
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("Partials/_AddAffectedCommunityToProject", new NCIP.ViewModels.AffectedCommunityCreationViewModel() { ProjectID = Model.ID })
+    }
+</div>
+
+<div class="row">
+    @Html.Partial("Partials/_MeetingsTable", Model.Meetings)
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("Partials/_AddMeetingToProject", new NCIP.ViewModels.MeetingCreationViewModel() { ProjectID = Model.ID })
+    }
+</div>
+
+<div class="row">
+    @Html.Partial("Partials/_ProjectFilesTable", Model.Projectfiles)
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("Partials/_UploadForm", new NCIP.ViewModels.ProjecfileTableViewModel() { ProjectID = Model.ID })
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/customScripts")
+    <script>
+        new Tablesort(document.getElementById('meeting-table'));
+        new Tablesort(document.getElementById('affected-communities-table'));
+        new Tablesort(document.getElementById('project-files-table'));
+    </script>
+}

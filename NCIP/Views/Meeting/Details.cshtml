@@ -1,0 +1,95 @@
+﻿@model NCIP.ViewModels.MeetingDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2 class="pull-left">@Html.DisplayFor(model => model.Name)</h2>
+</div>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.projectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.projectTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stage.StageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stage.StageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateHeld)
+        </dt>
+
+        <dd>
+            @{
+                string formattedTime = Model.DateHeld.ToString("MMM dd, yyyy H:mm tt");
+            }
+            @Html.DisplayFor(modelItem => formattedTime)
+        </dd>
+
+    </dl>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit Meeting Details", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+    }
+    <hr />
+    <div>
+        <h3>Meeting Attendance</h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Partial("Partials/_AddNewAtendance", new NCIP.ViewModels.AttendanceCreateViewModel() { MeetingID = Model.ID })
+        }
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Sitio</th>
+                    <th>EthnicGroup</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Attendances)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => i.Lastname)</td>
+                        <td>@Html.DisplayFor(modelItem => i.Firstname)</td>
+                        <td>@Html.DisplayFor(modelItem => i.Community.Sitio)</td>
+                        <td>@Html.DisplayFor(modelItem => i.EthnicGroup.Name)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("Go to Project", "Details", "Project", new { id = Model.ProjectID }, new { @class = "btn btn-primary" })
+
+</p>
+

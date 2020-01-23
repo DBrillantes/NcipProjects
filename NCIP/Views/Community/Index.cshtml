@@ -1,0 +1,9 @@
+﻿@model IEnumerable<NCIP.Models.Community>
+
+@Html.Partial("Partials/_CommunityTable")
+@section Scripts {
+    @Scripts.Render("~/bundles/customScripts")
+    <script>
+        new Tablesort(document.getElementById('communities-table'));
+    </script>
+}

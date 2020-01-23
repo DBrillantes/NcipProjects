@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NCIP.Models.Person>
+<table class="table-responsive table-striped table-hover table-bordered table-condensed" id="persons-table">
+    <thead>
+        <tr>
+            <th class="col-md-3">
+                Name
+            </th>
+            <th class="col-md-3">
+                @Html.DisplayNameFor(model => model.Company.Name)
+            </th>
+            <th class="col-md-3">
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.landline)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.FullName, "Details", new { controller = "Person", id = item.ID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.landline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

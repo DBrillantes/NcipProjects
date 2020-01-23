@@ -1,0 +1,29 @@
+﻿@model IEnumerable<NCIP.Models.LoggedAction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>
+            Action done by
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActionDone)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName) @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActionDone)
+        </td>
+    </tr>
+}
+
+</table>

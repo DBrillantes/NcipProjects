@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+    <meta name=ProgId content=Excel.Sheet>
+    <meta name=Generator content="Microsoft Excel 14">
+
+    <link rel=File-List href="/Content/NCIP/filelist.xml">
+    <!--[if !mso]>
+    <style>
+    v\:* {behavior:url(#default#VML);}
+    o\:* {behavior:url(#default#VML);}
+    x\:* {behavior:url(#default#VML);}
+    .shape {behavior:url(#default#VML);}
+    </style>
+    <![endif]-->
+    <!--<style id="Book1_24925_Styles">
+         table {
+            mso-displayed-decimal-separator: "\.";
+            mso-displayed-thousand-separator: "\,";
+        }
+
+        .xl1524925 {
+            padding: 0px;
+            mso-ignore: padding;
+            color: black;
+            font-size: 11.0pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Calibri, sans-serif;
+            mso-font-charset: 0;
+            mso-number-format: General;
+            text-align: general;
+            vertical-align: bottom;
+            mso-background-source: auto;
+            mso-pattern: auto;
+            white-space: nowrap;
+        }
+    </style>-->
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("NCIP", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Projects", "Index", "Project")</li>
+                    <li>@Html.ActionLink("Meetings", "Index", "Meeting")</li>
+                    <li>@Html.ActionLink("Communities", "Index", "Community")</li>
+                    <li>@Html.ActionLink("Barangays", "Index", "Barangay")</li>
+                    <li>@Html.ActionLink("People", "Index", "Person")</li>
+                    <li>@Html.ActionLink("Companies", "Index", "Company")</li>
+                    <li>@Html.ActionLink("Stages", "Index", "Stage")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-lg-10 body-content" style="padding-top:1em;">
+        @switch (@HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString().ToLower())
+        {
+            case "details":
+                <div class="pull-right">
+                    @Html.ActionLink("Back to Index", "Index", new { controller = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() }, new { @class = "btn btn-primary btn-lg" })
+                </div>
+                <div>
+                    <h4>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</h4>
+                </div>
+                break;
+            case "index":
+                <h2>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() Index</h2>
+                <div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Create New", "Create", new { controller = @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), returnURL = @HttpContext.Current.Request.Url.AbsoluteUri }, new { @class = "btn btn-primary" })
+                    }
+                </div>
+                <br />
+                break;
+
+        }
+
+        @RenderBody()
+        <footer style="clear:both;">
+
+            <hr style="border-color:cornflowerblue" />
+
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
+        </footer>
+
+    </div>
+    
+        <div class="col-sm-1"></div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

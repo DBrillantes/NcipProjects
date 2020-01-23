@@ -1,0 +1,34 @@
+﻿@model IEnumerable<NCIP.Models.Barangay>
+<table class="table-responsive table-striped table-hover table-bordered table-condensed" id="barangays-table">
+    <thead>
+        <tr>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.BarangayName)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.Classification)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.BarangayName, "Details", new { controller = "Barangay", id = item.ID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Classification)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/customScripts")
+    <script>
+        new Tablesort(document.getElementById('barangays-table'));
+        var urlParams = new URLSearchParams(window.location.search);
+        console.log(urlParams.get('page'));
+    </script>
+}

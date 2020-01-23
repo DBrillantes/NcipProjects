@@ -1,0 +1,30 @@
+﻿@model NCIP.Models.Barangay
+
+@{
+    ViewBag.Title = "Details";
+}
+<div>
+    <div class="container">
+        <h2 class="pull-left">@Html.DisplayFor(model => model.BarangayName)</h2>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BarangayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BarangayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Classification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classification)
+        </dd>
+
+    </dl>
+</div>
+@Html.Partial("Partials/_CommunityTable",Model.Communities)

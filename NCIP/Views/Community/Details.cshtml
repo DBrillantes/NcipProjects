@@ -1,0 +1,39 @@
+﻿@model NCIP.Models.Community
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <div class="container">
+        <h2 class="pull-left">@Html.DisplayFor(model => model.Sitio)</h2>
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Barangay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barangay.BarangayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Population)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Population)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Representative)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Representative)
+        </dd>
+
+    </dl>
+</div>

@@ -1,0 +1,40 @@
+﻿@model NCIP.Models.LoggedAction
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LoggedAction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActionDone)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

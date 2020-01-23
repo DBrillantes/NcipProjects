@@ -1,0 +1,72 @@
+﻿@model NCIP.ViewModels.PersonDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <h2 class="pull-left">@Html.DisplayFor(model => model.FullName)</h2>
+</div>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.landline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.landline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+    </dl>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <td>
+        @Html.ActionLink("Edit", "Edit", "Person", new { id = Model.ID }, new { @class = "btn btn-warning" })
+    </td>
+
+}
+<hr />
+@Html.Partial("Partials/_ProjectsTable",Model.Projects)
+

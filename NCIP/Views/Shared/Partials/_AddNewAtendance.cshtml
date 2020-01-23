@@ -1,0 +1,96 @@
+﻿@model NCIP.ViewModels.AttendanceCreateViewModel
+
+<button type="button" class="btn btn-primary clearfix" data-toggle="modal" data-target="#add-new-attendee">
+    Add New Attendee
+</button>
+<div> &nbsp</div>
+<div class="modal fade" id="add-new-attendee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Atendee to Meeting</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Create", "Attendance"))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Lastname, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Lastname)
+                                @Html.ValidationMessageFor(model => model.Lastname)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Firstname)
+                                @Html.ValidationMessageFor(model => model.Firstname)
+                            </div>
+                        </div>
+
+                        @*@Html.HiddenFor(model => model.MeetingID, new { @Value = Model.ID })*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CommunityID, "CommunityID", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("CommunityID", String.Empty)
+                                @Html.ValidationMessageFor(model => model.CommunityID)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EthnicGroupID, "EthnicGroupID", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("EthnicGroupID", String.Empty)
+                                @Html.ValidationMessageFor(model => model.EthnicGroupID)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-sm-2">
+
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(model => model.MeetingID)
+                        @Html.Hidden("returnURL", (object)@HttpContext.Current.Request.Url.AbsoluteUri)
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Add" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+    </script>
+}
